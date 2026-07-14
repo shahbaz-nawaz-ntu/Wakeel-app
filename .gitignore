@@ -1,0 +1,74 @@
+# Create .gitignore
+New-Item -Path .gitignore -ItemType File -Force
+
+# Add content to .gitignore
+@"
+# Dependencies
+node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Environment variables
+.env
+.env.local
+.env.production
+.env.development
+.env.test
+
+# Build files
+build/
+dist/
+.next/
+out/
+.DS_Store
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Database
+*.sqlite
+*.db
+*.sql
+
+# Uploads
+uploads/
+uploads/*
+!uploads/.gitkeep
+
+# Temporary files
+temp/
+tmp/
+*.tmp
+
+# Coverage
+coverage/
+.nyc_output/
+
+# Docker
+docker-compose.override.yml
+
+# Kubernetes
+*.secret.yaml
+
+# Misc
+*.pem
+*.key
+*.crt
+"@ | Out-File -FilePath .gitignore -Encoding utf8

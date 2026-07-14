@@ -5,7 +5,7 @@ import { config } from '../config';
 // ============================================
 // API Configuration
 // ============================================
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+const API_URL = import.meta.env.VITE_API_URL || 'https://536f-2400-adc7-2918-d000-24bc-7d8e-b223-ccc3.ngrok-free.app/api';
 const APP_VERSION = import.meta.env.VITE_APP_VERSION || '1.0.0';
 const APP_ENV = import.meta.env.VITE_APP_ENV || 'development';
 
@@ -96,7 +96,7 @@ apiClient.interceptors.response.use(
     // ============================================
     if (error.response.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
-      
+
       try {
         const refreshToken = localStorage.getItem('refreshToken');
         if (!refreshToken) {
@@ -108,29 +108,29 @@ apiClient.interceptors.response.use(
         });
 
         const { token, refreshToken: newRefreshToken } = response.data;
-        
+
         localStorage.setItem('token', token);
         if (newRefreshToken) {
           localStorage.setItem('refreshToken', newRefreshToken);
         }
-        
+
         originalRequest.headers.Authorization = `Bearer ${token}`;
         return apiClient(originalRequest);
-        
+
       } catch (refreshError) {
         localStorage.removeItem('token');
         localStorage.removeItem('refreshToken');
         localStorage.removeItem('user');
-        
+
         toast.error('Session expired. Please login again.', {
           duration: 5000,
           icon: '🔒',
         });
-        
+
         setTimeout(() => {
           window.location.href = '/login';
         }, 1000);
-        
+
         return Promise.reject({
           message: 'Session expired',
           type: 'session_expired',
@@ -234,13 +234,13 @@ apiClient.interceptors.response.use(
         duration: 5000,
         icon: '💥',
       });
-      
+
       console.error('Server Error:', {
         status: error.response.status,
         url: error.config.url,
         data: error.response.data,
       });
-      
+
       return Promise.reject({
         message,
         status: error.response.status,
@@ -257,7 +257,7 @@ apiClient.interceptors.response.use(
       duration: 4000,
       icon: '❌',
     });
-    
+
     return Promise.reject({
       message,
       status: error.response?.status || 500,
@@ -280,7 +280,7 @@ export const api = {
   delete: (url, config = {}) => apiClient.delete(url, config),
   head: (url, config = {}) => apiClient.head(url, config),
   options: (url, config = {}) => apiClient.options(url, config),
-  
+
   // ============================================
   // File Upload with Progress
   // ============================================
@@ -301,7 +301,7 @@ export const api = {
       },
     });
   },
-  
+
   // ============================================
   // File Download
   // ============================================
@@ -321,7 +321,7 @@ export const api = {
       return response;
     });
   },
-  
+
   // ============================================
   // Cancelable Request
   // ============================================
@@ -332,12 +332,12 @@ export const api = {
       token: source.token,
     };
   },
-  
+
   // ============================================
   // Multiple Requests
   // ============================================
   all: (requests) => Promise.all(requests),
-  
+
   // ============================================
   // Retry Request
   // ============================================
@@ -350,23 +350,23 @@ export const api = {
       return api.retry(fn, retries - 1, delay * 2);
     }
   },
-  
+
   // ============================================
   // Request with Cache
   // ============================================
   cached: (url, config = {}) => {
     const cacheKey = `${url}-${JSON.stringify(config.params || {})}`;
     const cachedData = sessionStorage.getItem(cacheKey);
-    
+
     if (cachedData) {
       const { data, timestamp } = JSON.parse(cachedData);
       const cacheDuration = config.cacheDuration || 5 * 60 * 1000; // 5 minutes
-      
+
       if (Date.now() - timestamp < cacheDuration) {
         return Promise.resolve(data);
       }
     }
-    
+
     return apiClient.get(url, config).then((data) => {
       sessionStorage.setItem(cacheKey, JSON.stringify({
         data,

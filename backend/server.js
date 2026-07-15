@@ -53,11 +53,11 @@ try {
         try {
           console.log('🔍 Google profile received:', profile.id);
           let user = await User.findOne({ googleId: profile.id });
-          
+
           if (user) {
             return done(null, user);
           }
-          
+
           const email = profile.emails?.[0]?.value;
           if (email) {
             user = await User.findOne({ email });
@@ -67,7 +67,7 @@ try {
               return done(null, user);
             }
           }
-          
+
           user = await User.create({
             googleId: profile.id,
             name: profile.displayName || `${profile.name?.givenName || ''} ${profile.name?.familyName || ''}`.trim(),
@@ -77,7 +77,7 @@ try {
             authProvider: 'google',
             password: Math.random().toString(36).slice(-12) + Math.random().toString(36).slice(-12),
           });
-          
+
           return done(null, user);
         } catch (error) {
           console.error('❌ Google strategy error:', error);
@@ -107,11 +107,11 @@ try {
         try {
           console.log('🔍 GitHub profile received:', profile.id);
           let user = await User.findOne({ githubId: profile.id });
-          
+
           if (user) {
             return done(null, user);
           }
-          
+
           const email = profile.emails?.[0]?.value;
           if (email) {
             user = await User.findOne({ email });
@@ -121,7 +121,7 @@ try {
               return done(null, user);
             }
           }
-          
+
           user = await User.create({
             githubId: profile.id,
             name: profile.displayName || profile.username,
@@ -131,7 +131,7 @@ try {
             authProvider: 'github',
             password: Math.random().toString(36).slice(-12) + Math.random().toString(36).slice(-12),
           });
-          
+
           return done(null, user);
         } catch (error) {
           console.error('❌ GitHub strategy error:', error);
@@ -169,7 +169,7 @@ console.log('✅ Passport strategies configured');
 
 console.log('📦 Setting up CORS...');
 app.use(cors({
-  origin: ['http://localhost:3000', 'http://localhost:5173', 'http://localhost:5174'],
+  origin: ['http://localhost:3000', 'http://localhost:5173', 'http://localhost:5174', 'https://wakeelapp.netlify.app'],
   credentials: true,
 }));
 
@@ -219,8 +219,8 @@ console.log('📦 Setting up Test Routes...');
 
 // ✅ TEST ROUTE
 app.get('/test', (req, res) => {
-  res.json({ 
-    success: true, 
+  res.json({
+    success: true,
     message: 'Server is running!',
     timestamp: new Date().toISOString()
   });
@@ -232,7 +232,7 @@ app.get('/api/test/cases', async (req, res) => {
     console.log('📥 TEST: Fetching all cases without auth...');
     const cases = await Case.find({}).sort({ createdAt: -1 });
     console.log(`📊 TEST: Found ${cases.length} cases`);
-    
+
     res.json({
       success: true,
       count: cases.length,

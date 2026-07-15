@@ -292,7 +292,7 @@ const ProceedingPage = ({ isOpen, onClose, caseItem }) => {
     try {
       const loadingToast = toast.loading('Downloading document...');
       
-      const url = `http://localhost:5000/api/proceedings/${id}/documents/${section}/${idx}/file?token=${token}`;
+      const url = `https://456a-2400-adc7-2918-d000-dc18-6866-73f3-b0f.ngrok-free.app/api/proceedings/${id}/documents/${section}/${idx}/file?token=${token}`;
       const response = await fetch(url, {
         headers: {
           'Authorization': `Bearer ${token}`

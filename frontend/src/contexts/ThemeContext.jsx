@@ -76,7 +76,7 @@ export const ThemeProvider = ({ children }) => {
       const token = localStorage.getItem('auth_token') || localStorage.getItem('token');
       if (!token) return;
 
-      await fetch('http://localhost:5000/api/users/theme', {
+      await fetch('https://456a-2400-adc7-2918-d000-dc18-6866-73f3-b0f.ngrok-free.app/api/users/theme', {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`,

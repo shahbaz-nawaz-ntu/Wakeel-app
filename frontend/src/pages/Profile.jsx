@@ -39,7 +39,7 @@ const Profile = ({ onNavigate, onUserUpdate }) => {
         return;
       }
 
-      const response = await fetch('http://localhost:5000/api/auth/me', {
+      const response = await fetch('https://456a-2400-adc7-2918-d000-dc18-6866-73f3-b0f.ngrok-free.app/api/auth/me', {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
@@ -147,7 +147,7 @@ const Profile = ({ onNavigate, onUserUpdate }) => {
 
       console.log('📤 Updating profile with:', updateData);
 
-      const response = await fetch('http://localhost:5000/api/auth/profile', {
+      const response = await fetch('https://456a-2400-adc7-2918-d000-dc18-6866-73f3-b0f.ngrok-free.app/api/auth/profile', {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`,

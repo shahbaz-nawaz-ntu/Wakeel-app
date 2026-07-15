@@ -5,7 +5,7 @@ import { config } from '../config';
 // ============================================
 // API Configuration
 // ============================================
-const API_URL = import.meta.env.VITE_API_URL || 'https://536f-2400-adc7-2918-d000-24bc-7d8e-b223-ccc3.ngrok-free.app/api';
+const API_URL = import.meta.env.VITE_API_URL || 'https://456a-2400-adc7-2918-d000-dc18-6866-73f3-b0f.ngrok-free.app/api';
 const APP_VERSION = import.meta.env.VITE_APP_VERSION || '1.0.0';
 const APP_ENV = import.meta.env.VITE_APP_ENV || 'development';
 

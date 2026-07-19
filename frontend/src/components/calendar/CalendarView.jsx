@@ -69,7 +69,7 @@ const CalendarView = ({ events = [], onAddEvent, onEditEvent, onDeleteEvent }) =
         return;
       }
 
-      const response = await fetch('https://456a-2400-adc7-2918-d000-dc18-6866-73f3-b0f.ngrok-free.app/api/events', {
+      const response = await fetch('https://2a95-2400-adc7-2918-d000-8cfe-551d-492d-ed50.ngrok-free.app/api/events', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
 
@@ -105,7 +105,7 @@ const CalendarView = ({ events = [], onAddEvent, onEditEvent, onDeleteEvent }) =
         return { success: false };
       }
 
-      const response = await fetch('https://456a-2400-adc7-2918-d000-dc18-6866-73f3-b0f.ngrok-free.app/api/events', {
+      const response = await fetch('https://2a95-2400-adc7-2918-d000-8cfe-551d-492d-ed50.ngrok-free.app/api/events', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -146,7 +146,7 @@ const CalendarView = ({ events = [], onAddEvent, onEditEvent, onDeleteEvent }) =
         return { success: false };
       }
 
-      const response = await fetch(`https://456a-2400-adc7-2918-d000-dc18-6866-73f3-b0f.ngrok-free.app/api/events/${id}`, {
+      const response = await fetch(`https://2a95-2400-adc7-2918-d000-8cfe-551d-492d-ed50.ngrok-free.app/api/events/${id}`, {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -188,7 +188,7 @@ const CalendarView = ({ events = [], onAddEvent, onEditEvent, onDeleteEvent }) =
         return { success: false };
       }
 
-      const response = await fetch(`https://456a-2400-adc7-2918-d000-dc18-6866-73f3-b0f.ngrok-free.app/api/events/${id}`, {
+      const response = await fetch(`https://2a95-2400-adc7-2918-d000-8cfe-551d-492d-ed50.ngrok-free.app/api/events/${id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`,

@@ -1,7 +1,7 @@
 // src/hooks/useReferences.js
 import { useState, useCallback, useEffect } from 'react';
 
-const API_URL = 'https://456a-2400-adc7-2918-d000-dc18-6866-73f3-b0f.ngrok-free.app/api';
+const API_URL = 'https://2a95-2400-adc7-2918-d000-8cfe-551d-492d-ed50.ngrok-free.app/api';
 
 export const useReferences = () => {
   const [references, setReferences] = useState([]);

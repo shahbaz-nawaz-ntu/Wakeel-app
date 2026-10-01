@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 
-const AddCaseModal = ({ isOpen, onClose, onAdd }) => {
+const AddCaseModal = ({ isOpen, onClose, onAdd, clients = [] }) => {
   const [formData, setFormData] = useState({
     // Case Identification
     caseNumber: '',
@@ -11,6 +11,7 @@ const AddCaseModal = ({ isOpen, onClose, onAdd }) => {
     officeNo: '',
     
     // Basic Information
+    clientId: '',
     caseTitle: '',
     description: '',
     party: 'N/A',
@@ -78,6 +79,7 @@ const AddCaseModal = ({ isOpen, onClose, onAdd }) => {
         officeNo: formData.officeNo,
         
         // Basic Information
+        clientId: formData.clientId || undefined,
         caseTitle: formData.caseTitle,
         title: formData.caseTitle,
         description: formData.description,
@@ -154,6 +156,7 @@ const AddCaseModal = ({ isOpen, onClose, onAdd }) => {
       courtNo: '',
       cmsNo: '',
       officeNo: '',
+      clientId: '',
       caseTitle: '',
       description: '',
       party: 'N/A',
@@ -292,7 +295,23 @@ const AddCaseModal = ({ isOpen, onClose, onAdd }) => {
                 <span className="w-1 h-8 bg-[#0F4C75] rounded-full"></span>
                 Basic Information
               </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-[#1B262C] mb-1">Client</label>
+                  <select
+                    name="clientId"
+                    value={formData.clientId}
+                    onChange={handleChange}
+                    className="w-full px-3 py-2.5 border border-[#BBE1FA] rounded-xl focus:outline-none focus:ring-4 focus:ring-[#3282B8]/10 focus:border-[#3282B8] transition-all duration-200 bg-white"
+                  >
+                    <option value="">Select a client...</option>
+                    {clients.map(client => (
+                      <option key={client.id || client._id} value={client.id || client._id}>
+                        {client.name} {client.company ? `(${client.company})` : ''}
+                      </option>
+                    ))}
+                  </select>
+                </div>
                 <div>
                   <label className="block text-sm font-medium text-[#1B262C] mb-1">Case Title *</label>
                   <input
@@ -333,7 +352,7 @@ const AddCaseModal = ({ isOpen, onClose, onAdd }) => {
                     <option value="Other">Other</option>
                   </select>
                 </div>
-                <div className="md:col-span-2 lg:col-span-3">
+                <div className="md:col-span-2 lg:col-span-4">
                   <label className="block text-sm font-medium text-[#1B262C] mb-1">Description</label>
                   <textarea
                     name="description"

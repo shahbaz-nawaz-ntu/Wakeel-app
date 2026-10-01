@@ -1,7 +1,7 @@
 // src/hooks/useClients.js
 import { useState, useCallback, useEffect } from 'react';
 
-const API_URL = 'https://2a95-2400-adc7-2918-d000-8cfe-551d-492d-ed50.ngrok-free.app/api';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
 export const useClients = () => {
   const [clients, setClients] = useState([]);

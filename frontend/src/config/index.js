@@ -21,8 +21,8 @@ export const config = {
   // API Configuration
   // ============================================
   api: {
-    baseURL: import.meta.env.VITE_API_URL || 'https://2a95-2400-adc7-2918-d000-8cfe-551d-492d-ed50.ngrok-free.app/api',
-    wsURL: import.meta.env.VITE_WS_URL || 'wss://2a95-2400-adc7-2918-d000-8cfe-551d-492d-ed50.ngrok-free.app',
+    baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5000/api',
+    wsURL: import.meta.env.VITE_WS_URL || 'ws://localhost:5000',
     timeout: 30000,
     retryCount: 3,
     retryDelay: 1000,

@@ -773,7 +773,7 @@ const DashboardContent = () => {
 
         <Footer stats={stats} onNavigate={handleNavigate} />
 
-        <AddCaseModal isOpen={isAddModalOpen} onClose={() => setIsAddModalOpen(false)} onAdd={addCase} />
+        <AddCaseModal isOpen={isAddModalOpen} onClose={() => setIsAddModalOpen(false)} onAdd={addCase} clients={clients} />
 
         <EditCaseModal
           isOpen={isEditModalOpen}
@@ -783,6 +783,7 @@ const DashboardContent = () => {
             setCaseToEdit(null);
           }}
           onUpdate={handleUpdateCase}
+          clients={clients}
         />
 
         <CaseDetailModal

@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import toast from 'react-hot-toast';
 
-const EditCaseModal = ({ isOpen, case: caseData, onClose, onUpdate }) => {
+const EditCaseModal = ({ isOpen, case: caseData, onClose, onUpdate, clients = [] }) => {
   const [formData, setFormData] = useState({
     // Case Identification
     caseNumber: '',
@@ -11,6 +11,7 @@ const EditCaseModal = ({ isOpen, case: caseData, onClose, onUpdate }) => {
     officeNo: '',
     
     // Basic Information
+    clientId: '',
     caseTitle: '',
     description: '',
     party: 'N/A',
@@ -69,6 +70,7 @@ const EditCaseModal = ({ isOpen, case: caseData, onClose, onUpdate }) => {
         officeNo: caseData.officeNo || '',
         
         // Basic Information
+        clientId: caseData.clientId || caseData.clientId?._id || '',
         caseTitle: caseData.caseTitle || caseData.title || '',
         description: caseData.description || '',
         party: caseData.party || 'N/A',
@@ -137,6 +139,7 @@ const EditCaseModal = ({ isOpen, case: caseData, onClose, onUpdate }) => {
         officeNo: formData.officeNo || caseData.officeNo,
         
         // Basic Information
+        clientId: formData.clientId || undefined,
         caseTitle: formData.caseTitle || caseData.caseTitle,
         title: formData.caseTitle || caseData.caseTitle,
         description: formData.description || '',
@@ -313,7 +316,23 @@ const EditCaseModal = ({ isOpen, case: caseData, onClose, onUpdate }) => {
                 <span className="w-1 h-8 bg-[#0F4C75] rounded-full"></span>
                 Basic Information
               </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-[#1B262C] mb-1">Client</label>
+                  <select
+                    name="clientId"
+                    value={formData.clientId}
+                    onChange={handleChange}
+                    className="w-full px-3 py-2.5 border border-[#BBE1FA] rounded-xl focus:outline-none focus:ring-4 focus:ring-[#3282B8]/10 focus:border-[#3282B8] transition-all duration-200 bg-white"
+                  >
+                    <option value="">Select a client...</option>
+                    {clients.map(client => (
+                      <option key={client.id || client._id} value={client.id || client._id}>
+                        {client.name} {client.company ? `(${client.company})` : ''}
+                      </option>
+                    ))}
+                  </select>
+                </div>
                 <div>
                   <label className="block text-sm font-medium text-[#1B262C] mb-1">Case Title *</label>
                   <input
@@ -353,7 +372,7 @@ const EditCaseModal = ({ isOpen, case: caseData, onClose, onUpdate }) => {
                     <option value="Other">Other</option>
                   </select>
                 </div>
-                <div className="md:col-span-2 lg:col-span-3">
+                <div className="md:col-span-2 lg:col-span-4">
                   <label className="block text-sm font-medium text-[#1B262C] mb-1">Description</label>
                   <textarea
                     name="description"

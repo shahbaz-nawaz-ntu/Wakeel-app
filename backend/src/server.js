@@ -283,22 +283,4 @@ app.use((req, res) => {
 // ============================================
 app.listen(PORT, () => {
   console.log(`\n🚀 Server running on http://localhost:${PORT}`);
-  console.log(`✅ Test route: http://localhost:${PORT}/test`);
-  console.log(`📊 Health check: http://localhost:${PORT}/api/health`);
-  console.log(`🔍 Debug: http://localhost:${PORT}/api/debug/passport`);
-  console.log(`🌍 Environment: ${process.env.NODE_ENV}`);
-  console.log(`\n📌 Available Routes:`);
-  console.log(`  GET  /test - Test route`);
-  console.log(`  GET  /api/debug/passport - Debug Passport`);
-  console.log(`  GET  /api/health - Health check`);
-  console.log(`  POST /api/auth/register - Register user`);
-  console.log(`  POST /api/auth/login - Login user`);
-  console.log(`  GET  /api/auth/google - Google Login`);
-  console.log(`  GET  /api/auth/github - GitHub Login`);
-  console.log(`  GET  /api/cases - Get all cases`);
-  console.log(`  POST /api/cases - Create case`);
-  console.log(`  GET  /api/clients - Get all clients`);
-  console.log(`  POST /api/clients - Create client`);
-  console.log(`  GET  /api/events - Get all events`);
-  console.log(`  POST /api/events - Create event`);
 });

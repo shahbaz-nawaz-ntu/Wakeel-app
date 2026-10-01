@@ -73,8 +73,9 @@ const caseSchema = new mongoose.Schema({
     defendant: { type: [String], default: [] },
   },
   
-  // ===== USER ASSOCIATION =====
+  // ===== USER & CLIENT ASSOCIATION =====
   userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+  clientId: { type: mongoose.Schema.Types.ObjectId, ref: 'Client' },
   
   // ===== TIMESTAMPS =====
   createdAt: { type: Date, default: Date.now },

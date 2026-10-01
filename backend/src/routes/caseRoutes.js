@@ -79,6 +79,7 @@ router.post('/', authenticateToken, async (req, res) => {
       officeNo: req.body.officeNo || '',
       
       // Basic Information
+      clientId: req.body.clientId || undefined,
       caseTitle: req.body.caseTitle || req.body.title || 'Untitled Case',
       title: req.body.title || req.body.caseTitle || 'Untitled Case',
       description: req.body.description || '',
@@ -178,6 +179,7 @@ router.put('/:id', authenticateToken, async (req, res) => {
       officeNo: req.body.officeNo || existingCase.officeNo || '',
       
       // Basic Information
+      clientId: req.body.clientId !== undefined ? req.body.clientId : existingCase.clientId,
       caseTitle: req.body.caseTitle || req.body.title || existingCase.caseTitle,
       title: req.body.title || req.body.caseTitle || existingCase.title || existingCase.caseTitle,
       description: req.body.description !== undefined ? req.body.description : existingCase.description,

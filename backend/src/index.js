@@ -475,34 +475,4 @@ app.use((req, res) => {
 // ============================================
 app.listen(PORT, () => {
   console.log(`\n🚀 Server running on http://localhost:${PORT}`);
-  console.log(`✅ Test route: http://localhost:${PORT}/test`);
-  console.log(`📊 Health check: http://localhost:${PORT}/api/health`);
-  console.log(`🔍 Debug: http://localhost:${PORT}/api/debug/passport`);
-  console.log(`🧪 Test Cases: http://localhost:${PORT}/api/test/cases`);
-  console.log(`👥 Test Clients: http://localhost:${PORT}/api/test/clients`);
-  console.log(`📚 Test References: http://localhost:${PORT}/api/test/references`);
-  console.log(`🔍 Debug Clients: http://localhost:${PORT}/api/debug/clients`);
-  console.log(`🌍 Environment: ${process.env.NODE_ENV}`);
-  console.log(`\n📌 Available Routes:`);
-  console.log(`  GET  /test - Test route`);
-  console.log(`  GET  /api/test/cases - Test cases (no auth)`);
-  console.log(`  GET  /api/test/clients - Test clients (no auth)`);
-  console.log(`  GET  /api/test/references - Test references (no auth)`);
-  console.log(`  GET  /api/debug/cases - Debug cases`);
-  console.log(`  GET  /api/debug/clients - Debug clients`);
-  console.log(`  GET  /api/debug/references - Debug references`);
-  console.log(`  POST /api/auth/register - Register user`);
-  console.log(`  POST /api/auth/login - Login user`);
-  console.log(`  GET  /api/auth/google - Google Login`);
-  console.log(`  GET  /api/auth/github - GitHub Login`);
-  console.log(`  GET  /api/cases - Get all cases (auth required)`);
-  console.log(`  GET  /api/clients - Get all clients (auth required)`);
-  console.log(`  GET  /api/references - Get all references (auth required)`);
-  console.log(`  POST /api/references - Create reference (auth required)`);
-  console.log(`  GET  /api/proceedings - Get all proceedings (auth required)`);
-  console.log(`  POST /api/proceedings - Create proceeding (auth required)`);
-  console.log(`\n🔧 CORS allowed origins:`);
-  console.log(`  http://localhost:3000`);
-  console.log(`  http://localhost:5173`);
-  console.log(`  http://localhost:5174`);
 });
